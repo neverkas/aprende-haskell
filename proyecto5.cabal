@@ -27,7 +27,7 @@ source-repository head
 
 library
   exposed-modules:
-      Kars
+      Kars, PdepFlix
   other-modules:
       Paths_proyecto5
   hs-source-dirs:

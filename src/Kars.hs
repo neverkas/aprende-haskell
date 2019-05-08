@@ -6,6 +6,8 @@ import Text.Show.Functions
     FUNCIONES EXTRA 
 ############################# -}
 
+largoPista = 1000
+
 duplicarVelocidad :: Float -> Float 
 duplicarVelocidad = (*2)
 
@@ -33,6 +35,9 @@ hayCantidadVocalesEntre :: Int -> Int -> String -> Bool
 hayCantidadVocalesEntre desde hasta palabra = 
     cantidadVocales palabra >= desde && cantidadVocales palabra <= hasta
 
+tieneNafta :: Auto -> Bool 
+tieneNafta = (>0) . nivelDeNafta
+
 usarTruco :: Auto -> Auto
 usarTruco auto = (truco auto) auto
 
@@ -43,7 +48,7 @@ usarTruco auto = (truco auto) auto
 type Participante = Auto -> Auto
 type Truco = Auto -> Auto 
 
-data Auto = Auto{
+data Auto = Auto {
     nombre :: String,
     nivelDeNafta :: Float, 
     velocidad :: Float,
@@ -58,7 +63,7 @@ data Auto = Auto{
 
 deReversa :: Truco
 deReversa auto = auto {
-    nivelDeNafta = ((aumentarUnQuintoDe 1000) . nivelDeNafta) auto 
+    nivelDeNafta = (aumentarUnQuintoDe largoPista . nivelDeNafta) auto 
 }
 
 impresionar :: Truco
@@ -67,8 +72,8 @@ impresionar auto = auto {
 }
 
 nitro :: Truco
-nitro auto = auto{
-    velocidad = ((aumentarEn 15) . velocidad) auto
+nitro auto = auto {
+    velocidad = (aumentarEn 15 . velocidad) auto
 }
 
 fingirAmor :: String -> Truco
@@ -90,9 +95,8 @@ incrementarVelocidad auto
     | otherwise = auto
 
 puedeRealizarTruco :: Auto -> Bool
-puedeRealizarTruco (Auto _ nivelDeNafta velocidad _ _) = 
-    nivelDeNafta > 0 && velocidad < 100
-
+puedeRealizarTruco auto = velocidad auto < 100 && tieneNafta auto
+    
 comboLoco :: Truco
 comboLoco = deReversa . nitro
 
@@ -101,7 +105,7 @@ turbo (Auto nombre nivelDeNafta velocidad nombreDeEnamorade truco) =
     Auto nombre 0 (aumentarEn velocidad (nivelDeNafta*10)) nombreDeEnamorade truco                
 
 queTrucazo :: String -> Participante
-queTrucazo nombre = (incrementarVelocidad . fingirAmor nombre)
+queTrucazo nombre = incrementarVelocidad . fingirAmor nombre
 
 {- ##########################
     MODELADO AUTOS
@@ -142,4 +146,3 @@ rodra = Auto {
     nombreDeEnamorade = "Taisa",
     truco = fingirAmor "Petra"
 }
-                    
