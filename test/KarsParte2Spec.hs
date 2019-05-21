@@ -1,8 +1,8 @@
 module KarsParte2Spec (spec) where
 
 import Test.Hspec
---import KarsParte2
-import KarsParte2Original
+import KarsParte2
+--import KarsParte2Original
 
 spec :: Spec
 spec = do
