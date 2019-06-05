@@ -1,5 +1,5 @@
 ## Acerca del contenido
-Realicé esta recopilación de material para aquellos estudiantes que necesiten entender más en detalle como desarrollar en Haskell integrando conceptos del paradigma funcional. En cada programa les dejo comentado su funcionamiento. Cabe destacar que también soy estudiante, y es posible que presenten posibles errores conceptuales.
+Realicé esta recopilación de material para aquellos estudiantes que necesiten entender más en detalle como desarrollar en Haskell integrando conceptos del paradigma funcional. En cada programa les dejo comentado su funcionamiento. Cabe destacar que también soy estudiante, por lo tanto es posible que presenten algunos errores conceptuales.
 
 También les comparto en formato pdf las guías de ejercicios, parciales y finales.
 
