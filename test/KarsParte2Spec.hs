@@ -2,7 +2,6 @@ module KarsParte2Spec (spec) where
 
 import Test.Hspec
 import KarsParte2
---import KarsParte2Original
 
 spec :: Spec
 spec = do
@@ -65,7 +64,6 @@ spec = do
 
     describe "Rodra debe ser el único participante luego de correr la carrera de potreroFunes" $ do 
         it "debe ser True" $ do
-            --(participantes.correrCarrera) potreroFunes `shouldBe` 70
             (elem "Rodra" $ map nombre ((participantes.correrCarrera) potreroFunes)) `shouldBe` True
 
     {-

@@ -224,10 +224,6 @@ module KarsParte2 where
     
     inutilidad :: Truco 
     inutilidad auto = auto
-    {-
-    inutilidad (Auto nombre nivelDeNafta velocidad nombreDeEnamorade truco) =
-        Auto nombre nivelDeNafta velocidad nombreDeEnamorade truco     
-    -}
     
     -----------------
     -- A CORRER !! -- 
@@ -246,7 +242,6 @@ module KarsParte2 where
     }
     
     calcularFormula :: Float -> Auto -> Float
-    --calcularFormula kmDeLaPista = ((/kmDeLaPista) . (*10) . velocidad)
     calcularFormula kmDeLaPista = (kmDeLaPista / 10 *) . velocidad
 
     restaEntrePositivos :: Float -> Float -> Float
@@ -254,7 +249,6 @@ module KarsParte2 where
 
     restarCombustible :: Float -> Auto -> Auto 
     restarCombustible kmDeLaPista auto = auto {
-        --nivelDeNafta = max 0 ((nivelDeNafta auto) - kmDeLaPista  / 10 * (velocidad auto))                
         nivelDeNafta = restaEntrePositivos (nivelDeNafta auto) (calcularFormula kmDeLaPista auto)
     }
     
@@ -266,16 +260,11 @@ module KarsParte2 where
     hacerSegunEnamorade :: [String] -> Auto -> Auto
     hacerSegunEnamorade enamorades auto 
       | estaEnamoradeEnElPublico auto enamorades = hacerTrucoDelAuto auto
-      -- | estaEnamoradeEnElPublico enamorades auto = hacerTrucoDelAuto auto
       | otherwise = auto
     
     hacerTrucoDelAuto :: Auto -> Auto
     hacerTrucoDelAuto auto = truco auto $ auto
     
-    {-
-    estaEnamoradeEnElPublico :: [String] -> Auto -> Bool
-    estaEnamoradeEnElPublico enamorades auto = elem (nombreDeEnamorade auto) enamorades
-    -}
     estaEnamoradeEnElPublico :: Auto -> [String] -> Bool
     estaEnamoradeEnElPublico auto = elem (nombreDeEnamorade auto)
     
@@ -293,9 +282,8 @@ module KarsParte2 where
     autosDespuesDeLaVuelta carrera = take (vueltasACorrer carrera + 1)
     
     -- sin delegar -- 
-    
-    correrCarrera' :: Carrera -> Carrera
-    correrCarrera' carrera = (!!) (take (vueltasACorrer carrera + 1 ) $ iterate darVuelta carrera) (vueltasACorrer carrera)  
+    --correrCarrera' :: Carrera -> Carrera
+    --correrCarrera' carrera = (!!) (take (vueltasACorrer carrera + 1 ) $ iterate darVuelta carrera) (vueltasACorrer carrera)  
     
     -------------------
     -- QUIEN GANA ?? --
@@ -325,16 +313,3 @@ module KarsParte2 where
     
     aplicarTruco :: Auto -> Truco -> Auto
     aplicarTruco auto unTruco = unTruco $ auto
-    
-    -------------------
-    --CASOS DE PRUEBA--
-    -------------------
-    
-    {-
-    
-    velocidad $ last $ participantes $ lluvia prueba
-    velocidad . last . participantes . lluvia $ prueba
-    
-    > 40 
-    
-    -}

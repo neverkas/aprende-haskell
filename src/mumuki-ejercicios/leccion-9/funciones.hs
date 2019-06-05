@@ -1,0 +1,1 @@
+funciones tupla = [fst tupla, snd tupla]
